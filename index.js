@@ -6,8 +6,10 @@ const { Sequelize, DataTypes } = require('sequelize');
 const app = express();
 const port = 8000;
 
-
-app.use(bodyParser.json());
+// BodyParser: used in Express.js applications to handle request bodies 
+app.use(bodyParser.json()); // to support JSON-encoded bodies
+// CORS: Cross-Origin Resource Sharing
+// CORS: allows applications running at one origin (domain) to make requests to resources hosted at a different origin
 app.use(cors());
 
 // Setting of PostgreSQL
@@ -19,12 +21,13 @@ const sequelize = new Sequelize('word_quiz', 'misatoseki', '', {
 
 // Define word model
 const Word = sequelize.define('Word', {
-    word: {
+    finnish: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    definition: {
-        type: DataTypes.TEXT
+    english: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 },{
     tableName: 'word_quiz',
