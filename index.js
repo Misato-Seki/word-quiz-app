@@ -28,13 +28,17 @@ const Word = sequelize.define('Word', {
     english: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    image: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 },{
     tableName: 'word_quiz',
     timestamps: false
 });
 
-// Create endpoint
+// GET: random word
 app.get('/random-word', async(req, res) => {
     try {
         const word = await Word.findOne({
@@ -46,6 +50,67 @@ app.get('/random-word', async(req, res) => {
         res.status(500).json({ error: 'Something went wrong.'})
     }
 });
+
+
+// POST: new word
+app.post('/word', async(req, res) => {
+    const { finnish, english, image } = req.body;
+
+    try {
+        if(!finnish || !english || !image) {
+            return res.status(400).json({error: 'All fields are required'})
+        }
+        const newWord = await Word.create({
+            finnish,
+            english,
+            image
+        });
+        res.status(201).json(newWord);
+    } catch (error) {
+        res.status(500).json({ error: 'Something went wrong.'})
+    }
+})
+
+// PUT: update word
+app.put('/word/:id', async(req, res) => {
+    const { id } = req.params;
+    const { finnish, english, image } = req.body;
+
+    try {
+        const word = await Word.findByPk(id);
+        if(!word){
+            res.status(404).json({error: 'Word not found'})
+        }
+        if(!finnish || !english || !image) {
+            return res.status(400).json({error: 'All fields are required'})
+        }
+        word.finnish = finnish;
+        word.english = english;
+        word.image = image;
+        word.save();
+        res.json(word);        
+    } catch (error) {
+        res.status(500).json({error:'Something went wrong.'})
+    }
+
+})
+
+// DELETE: delete word
+app.delete('/word/:id', async(req, res) => {
+    const { id } = req.params;
+    try {
+        const word = await Word.findByPk(id);
+        if(!word){
+            res.status(500).json({error:'Word not found.'});
+        }
+        await word.destroy();
+        res.json({message: 'Word deleted successfully'});
+
+        
+    } catch (error) {
+        res.status(404).json({error: 'Something went wrong.'})
+    }
+})
 
 // Run server
 app.listen(port, () => {
