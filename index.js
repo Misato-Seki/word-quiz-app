@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes, Op } = require('sequelize');
 
 const app = express();
 const port = 8000;
@@ -109,6 +109,26 @@ app.delete('/word/:id', async(req, res) => {
         
     } catch (error) {
         res.status(404).json({error: 'Something went wrong.'})
+    }
+})
+
+// GET: find word
+app.get('/word', async(req, res) => {
+    const { word } = req.query
+    try {
+        const foundWord = await Word.findOne({
+            where: {[Op.or] : [
+                {finnish: word},
+                {english: word}
+            ]}
+        })
+        if(!foundWord) {
+            res.status(500).json({error:'Word not found.'});
+        }
+        res.json(foundWord);
+        
+    } catch (error) {
+        res.status(404).json({error: 'Something went wrong.'});
     }
 })
 
