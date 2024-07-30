@@ -104,9 +104,7 @@ app.delete('/word/:id', async(req, res) => {
             res.status(500).json({error:'Word not found.'});
         }
         await word.destroy();
-        res.json({message: 'Word deleted successfully'});
-
-        
+        res.status(204).send();
     } catch (error) {
         res.status(404).json({error: 'Something went wrong.'})
     }
