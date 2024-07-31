@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
+import "../css/DataEditor.css"
 
 function DataEditor() {
   const [input, setInput] = useState("");
@@ -127,16 +128,18 @@ function DataEditor() {
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Enter Finnish or English word"
+        size={30}
       />
       <Button variant="secondary" onClick={fetchData}>
         Fetch
       </Button>
       <p>Finnish</p>
-      <input name="finnish" value={wordData.finnish} onChange={handleChange} />
+      <input name="finnish" value={wordData.finnish} onChange={handleChange} size={30}/>
       <p>English</p>
-      <input name="english" value={wordData.english} onChange={handleChange} />
+      <input name="english" value={wordData.english} onChange={handleChange} size={30}/>
       <p>image</p>
-      <input name="image" value={wordData.image} onChange={handleChange} />
+      <input name="image" value={wordData.image} onChange={handleChange} size={30}/>
+      <br />
       <Button variant="secondary" onClick={isUpdateMode ? updateData : addData}>
         Save
       </Button>

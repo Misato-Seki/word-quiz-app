@@ -1,0 +1,15 @@
+.container {
+    text-align: center;
+  }
+
+input {
+    margin-bottom: 10px;
+}
+
+Button:first-of-type {
+    margin-left: 10px;
+}
+
+Button:nth-of-type(2) {
+    margin-right: 10px;
+}
