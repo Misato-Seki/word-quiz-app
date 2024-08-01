@@ -1,0 +1,21 @@
+.home{
+    margin: 100px 100px 0 100px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  border: 1px solid black;
+  width: 100%;
+  max-width: 500px;
+}

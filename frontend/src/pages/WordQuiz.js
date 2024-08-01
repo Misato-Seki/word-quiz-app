@@ -23,7 +23,7 @@ function WordQuiz() {
 
   return (
     <>
-      <div className="word-quiz-container">
+      <div className="word-quiz">
         <div className="header">
           <h1>Word Quiz!</h1>
         </div>

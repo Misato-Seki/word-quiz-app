@@ -122,7 +122,7 @@ function DataEditor() {
   };
 
   return (
-    <div className="container">
+    <div className="data-editor">
       <h1 className="title">Data Editor</h1>
       <input
         value={input}
