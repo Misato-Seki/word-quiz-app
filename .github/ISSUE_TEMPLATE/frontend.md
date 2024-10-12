@@ -1,7 +1,7 @@
 ---
 name: Frontend
 about: Suggest an idea for this project
-title: ''
+title: 'Frontend: '
 labels: ''
 assignees: ''
 

@@ -1,7 +1,7 @@
 ---
 name: Backend
 about: Suggest an idea for this project
-title: ''
+title: 'Backend: '
 labels: ''
 assignees: ''
 
