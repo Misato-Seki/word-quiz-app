@@ -9,6 +9,7 @@ import dataeditor from '../images/data-editor.jpg'
 function Home() {
   return (
     <div className="home">
+      <p>I added this text. - feature branch -</p>
       <Row xs={1} md={2} className="g-4">
         <Col>
           <Card>
